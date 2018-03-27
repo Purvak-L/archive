@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Dashboard</title>
+
+    <style>
+      #loader {
+        transition: all 0.3s ease-in-out;
+        opacity: 1;
+        visibility: visible;
+        position: fixed;
+        height: 100vh;
+        width: 100%;
+        background: #fff;
+        z-index: 90000;
+      }
+
+      #loader.fadeOut {
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      .spinner {
+        width: 40px;
+        height: 40px;
+        position: absolute;
+        top: calc(50% - 20px);
+        left: calc(50% - 20px);
+        background-color: #333;
+        border-radius: 100%;
+        -webkit-animation: sk-scaleout 1.0s infinite ease-in-out;
+        animation: sk-scaleout 1.0s infinite ease-in-out;
+      }
+
+      @-webkit-keyframes sk-scaleout {
+        0% { -webkit-transform: scale(0) }
+        100% {
+          -webkit-transform: scale(1.0);
+          opacity: 0;
+        }
+      }
+
+      @keyframes sk-scaleout {
+        0% {
+          -webkit-transform: scale(0);
+          transform: scale(0);
+        } 100% {
+          -webkit-transform: scale(1.0);
+          transform: scale(1.0);
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+  <body class="app" onload="doLoad()">
+    <!-- @TOC -->
+    <!-- =================================================== -->
+    <!--
+      + @Page Loader
+      + @App Content
+          - #Left Sidebar
+              > $Sidebar Header
+              > $Sidebar Menu
+
+          - #Main
+              > $Topbar
+              > $App Screen Content
+    -->
+
+    <!-- @Page Loader -->
+    <!-- =================================================== -->
+    <div id='loader'>
+      <div class="spinner"></div>
+    </div>
+
+    <script>
+      window.addEventListener('load', () => {
+        const loader = document.getElementById('loader');
+        setTimeout(() => {
+          loader.classList.add('fadeOut');
+        }, 300);
+      });
+    </script>
+
+    <!-- @App Content -->
+    <!-- =================================================== -->
+    <div>
+      <!-- #Left Sidebar ==================== -->
+      <div class="sidebar">
+        <div class="sidebar-inner">
+          <!-- ### $Sidebar Header ### -->
+          <div class="sidebar-logo">
+            <div class="peers ai-c fxw-nw">
+              <div class="peer peer-greed">
+                <a class="sidebar-link td-n" href="index.html">
+                  <div class="peers ai-c fxw-nw">
+                    <div class="peer">
+                      <div class="logo">
+                        <img src="assets/images/mu.png" alt="" width="80%">
+                      </div>
+                    </div>
+                    <div class="peer peer-greed">
+                      <h5 class="lh-1 mB-0 logo-text">μ-FALCON</h5>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="peer">
+                <div class="mobile-toggle sidebar-toggle">
+                  <a href="" class="td-n">
+                    <i class="ti-arrow-circle-left"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ### $Sidebar Menu ### -->
+          <!--
+          weather - chat
+          relay_points - calender
+          drone_positions - sigin
+          swarm_status - signup
+          select_area - datatable
+          -->
+          <ul class="sidebar-menu scrollable pos-r">
+            <li class="nav-item mT-30 active">
+              <a class="sidebar-link" href="index.html">
+                <span class="icon-holder">
+                  <i class="c-blue-500 ti-home"></i>
+                </span>
+                <span class="title">Dashboard</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class='sidebar-link' href="signup.html">
+                <span class="icon-holder">
+                  <i class="c-brown-500 ti-email"></i>
+                </span>
+                <span class="title">Swarm Status</span>
+              </a>
+            </li>
+              <li class="nav-item">
+              <a class='sidebar-link' href="datatable.html">
+                <span class="icon-holder">
+                  <i class="c-brown-500 ti-email"></i>
+                </span>
+                <span class="title">Select Area</span>
+              </a>
+            </li>
+              <li class="nav-item">
+              <a class='sidebar-link' href="calender.html">
+                <span class="icon-holder">
+                  <i class="c-brown-500 ti-email"></i>
+                </span>
+                <span class="title">Relay Points</span>
+              </a>
+            </li>
+              <li class="nav-item">
+              <a class='sidebar-link' href="sigin.html">
+                <span class="icon-holder">
+                  <i class="c-brown-500 ti-email"></i>
+                </span>
+                <span class="title">Drone Positions</span>
+              </a>
+            </li>
+              
+              <li class="nav-item">
+              <a class='sidebar-link' href="chat.html">
+                <span class="icon-holder">
+                  <i class="c-brown-500 ti-email"></i>
+                </span>
+                <span class="title">Weather</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- #Main ============================ -->
+      <div class="page-container">
+        <!-- ### $Topbar ### -->
+        <div class="header navbar">
+          <div class="header-container">
+            <ul class="nav-left">
+              <li>
+                <a id='sidebar-toggle' class="sidebar-toggle" href="javascript:void(0);">
+                  <i class="ti-menu"></i>
+                </a>
+              </li>
+              <li class="search-box">
+                <a class="search-toggle no-pdd-right" href="javascript:void(0);">
+                  <i class="search-icon ti-search pdd-right-10"></i>
+                  <i class="search-icon-close ti-close pdd-right-10"></i>
+                </a>
+              </li>
+              <li class="search-input">
+                <input class="form-control" type="text" placeholder="Search...">
+              </li>
+            </ul>
+            <ul class="nav-right">
+              <li class="dropdown">
+                <a href="" class="dropdown-toggle no-after peers fxw-nw ai-c lh-1" data-toggle="dropdown">
+                  <div class="peer mR-10">
+                    <img class="w-2r bdrs-50p" src="assets/images/mu.png" alt="mu-falcon">
+                  </div>
+                  <div class="peer">
+                    <span class="fsz-sm c-grey-900">Ashok Patel</span>
+                  </div>
+                </a>
+                <ul class="dropdown-menu fsz-sm">
+                  <li>
+                    <a href="" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700">
+                      <i class="ti-settings mR-10"></i>
+                      <span>Setting</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700">
+                      <i class="ti-user mR-10"></i>
+                      <span>Profile</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="email.html" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700">
+                      <i class="ti-email mR-10"></i>
+                      <span>Messages</span>
+                    </a>
+                  </li>
+                  <li role="separator" class="divider"></li>
+                  <li>
+                    <a href="" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700">
+                      <i class="ti-power-off mR-10"></i>
+                      <span>Logout</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- ### $App Screen Content ### -->
+        <main class='main-content bgc-grey-100'>
+          <div id='mainContent'>
+            <div class="row gap-20 masonry pos-r">
+              <div class="masonry-sizer col-md-6"></div>
+
+              <div class="masonry-item  w-100">
+                <div class="row gap-20">
+                  <!-- #Toatl Visits ==================== -->
+                  <div class='col-md-3'>
+                    <div class="layers bd bgc-white p-20">
+                      <div class="layer w-100 mB-10">
+                        <h6 class="lh-1">Select Area</h6>
+                      </div>
+                      <div class="layer w-100">
+                        <div class="peers ai-sb fxw-nw">
+                          <div class="peer peer-greed">
+                            <span id="area_select"><img src="./assets/images/crop.png" width="25%"></span>
+                          </div>
+                          <div class="peer">
+                            <button onclick="window.location.href='/datatable.html'" type="button" class="btn btn-success" data-toggle="tooltip" data-placement="bottom" title="Open a new window to select a new area for mapping">Open 
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- #Total Page Views ==================== -->
+                  <div class='col-md-3'>
+                    <div class="layers bd bgc-white p-20">
+                      <div class="layer w-100 mB-10">
+                        <h6 class="lh-1">Swarm Status</h6>
+                      </div>
+                      <div class="layer w-100">
+                        <div class="peers ai-sb fxw-nw">
+                          <div class="peer peer-greed">
+                            <span id="swarm_thumb"><img src="./assets/images/networking.png" width="25%"></span>
+                          </div>
+                          <div class="peer">
+                            <button onclick="window.location.href='/signup.html'" type="button" class="btn btn-success" data-toggle="tooltip" data-placement="bottom" title="Check current status of swarm">Open 
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- #Unique Visitors ==================== -->
+                  <div class='col-md-3'>
+                    <div class="layers bd bgc-white p-20">
+                      <div class="layer w-100 mB-10">
+                        <h6 class="lh-1">Relay Points</h6>
+                      </div>
+                      <div class="layer w-100">
+                        <div class="peers ai-sb fxw-nw">
+                          <div class="peer peer-greed">
+                            <span id="swarm_thumb"><img src="./assets/images/vector.png" width="25%"></span>
+                          </div>
+                          <div class="peer">
+                            <button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="bottom" title="Check status of current relay points">Open 
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- #Bounce Rate ==================== -->
+                  <div class='col-md-3'>
+                    <div class="layers bd bgc-white p-20">
+                      <div class="layer w-100 mB-10">
+                        <h6 class="lh-1">Status: <span style="color: #00ff88">Ready</span></h6>
+                      </div>
+                      <div class="layer w-100">
+                        <div class="peers ai-sb fxw-nw">
+                        
+                          <div class="peer">
+                            <button type="button" class="btn cur-p btn-danger">Start mission</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="masonry-item col-12">
+                <!-- #Current Level Image Frame ==================== -->
+                <div class="bd bgc-white">
+                  <div class="peers fxw-nw@lg+ ai-s">
+                    <div class="peer peer-greed w-70p@lg+ w-100@lg- p-20">
+                      <div class="layers">
+                        <div class="layer w-100 mB-10">
+                          <h6 class="lh-1">Current View</h6>
+                        </div>
+                        <div class="layer w-100" style="width: 50px; margin: auto;"> 
+
+                          <!-- <div id="world-map-marker"></div> -->
+                          <!-- <div id="main-image"><img src="./assets/images/index_map.png" width="100%"></div> -->
+                          <canvas id="main-image" width="200"></canvas>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="peer bdL p-20 w-30p@lg+ w-100p@lg-">
+                      <div class="layers">
+                        <div class="layer w-100">
+                          
+
+                          <!-- Input Parameters block -->
+                          <div class="layers">
+                            <div class="bgc-white p-20 bd">
+                              <h6 class="c-grey-900">Select Level: </h6>
+                              <div class="mT-30">
+                                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                                    <div class="btn-group mr-2" role="group" aria-label="First group">
+                                      <button type="button" class="btn btn-success" onclick="set_level(0)">0</button>
+                                      <button type="button" class="btn btn-success" onclick="set_level(1)">1</button>
+                                      <button type="button" class="btn btn-success" onclick="set_level(2)">2</button>
+                                      <button type="button" class="btn btn-success" onclick="set_level(3)">3</button>
+                                      <button type="button" class="btn btn-success" onclick="set_level(4)">4</button>
+                                    </div>
+                                  </div>
+                              </div>
+                              <hr>
+                              <h6 class="c-grey-900">Input Data</h6>
+                              <div class="mT-30">
+                                <form>
+                                  <div class="form-group row">
+                                    <label for="height" class="col-sm-6 col-form-label">max. height</label>
+                                    <div class="col-sm-6">
+                                      <input type="text" class="form-control" id="height" placeholder="00">
+                                    </div>
+                                  </div>
+                                  <div class="form-group row">
+                                    <label for="overlap" class="col-sm-6 col-form-label">Overlap %</label>
+                                    <div class="col-sm-6">
+                                      <input type="text" class="form-control" id="overlap" placeholder="00">
+                                    </div>
+                                  </div>
+                                  <hr>
+                                  <div class="form-group row">
+                                    <label for="no_drones" class="col-sm-6 col-form-label">No. Drones</label>
+                                    <div class="col-sm-6">
+                                      <input type="text" class="form-control" id="no_drones" placeholder="00">
+                                    </div>
+                                  </div>
+                                  <div class="form-group row">
+                                    <label for="comm_range" class="col-sm-6 col-form-label">Comm. Range</label>
+                                    <div class="col-sm-6">
+                                      <input type="text" class="form-control" id="comm_range" placeholder="00m">
+                                    </div>
+                                  </div>
+                                  <div class="form-group row">
+                                    <label for="server_range" class="col-sm-6 col-form-label">Server Range</label>
+                                    <div class="col-sm-6">
+                                      <input type="text" class="form-control" id="server_range" placeholder="00m">
+                                    </div>
+                                  </div>
+                                  <div class="form-group row">
+                                    <div class="col-sm-10">
+                                      <button id="submit_params" type="button" class="btn btn-primary" onclick="send_params()">Submit</button>
+                                    </div>
+                                  </div>
+                                </form>
+                              </div>
+                            </div>
+
+                          </div>
+
+
+
+                          <!-- Pie Charts -->
+                         <!--  <div class="peers pT-20 mT-20 bdT fxw-nw@lg+ jc-sb ta-c gap-10">
+                            <div class="peer">
+                              <div class="easy-pie-chart" data-size='80' data-percent="75" data-bar-color='#f44336'>
+                                <span></span>
+                              </div>
+                              <h6 class="fsz-sm">New Users</h6>
+                            </div>
+                            <div class="peer">
+                              <div class="easy-pie-chart" data-size='80' data-percent="50" data-bar-color='#2196f3'>
+                                <span></span>
+                              </div>
+                              <h6 class="fsz-sm">New Purchases</h6>
+                            </div>
+                            <div class="peer">
+                              <div class="easy-pie-chart" data-size='80' data-percent="90" data-bar-color='#ff9800'>
+                                <span></span>
+                              </div>
+                              <h6 class="fsz-sm">Bounce Rate</h6>
+                            </div>
+                          </div> -->
+
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="masonry-item col-md-6">
+                <!-- #Monthly Stats ==================== -->
+                <div class="bd bgc-white">
+                  <div class="layers">
+                    <div class="layer w-100 pX-20 pT-20">
+                      <h6 class="lh-1">Drone Elevations</h6>
+                    </div>
+                    <div class="layer w-100 p-20">
+                      <canvas id="line-chart" height="230"></canvas>
+                    </div>
+<!--
+                    <div class="layer bdT p-20 w-100">
+                      <div class="peers ai-c jc-c gapX-20">
+                        <div class="peer">
+                          <span class="fsz-def fw-600 mR-10 c-grey-800">10% <i class="fa fa-level-up c-green-500"></i></span>
+                          <small class="c-grey-500 fw-600">APPL</small>
+                        </div>
+                        <div class="peer fw-600">
+                          <span class="fsz-def fw-600 mR-10 c-grey-800">2% <i class="fa fa-level-down c-red-500"></i></span>
+                          <small class="c-grey-500 fw-600">Average</small>
+                        </div>
+                        <div class="peer fw-600">
+                          <span class="fsz-def fw-600 mR-10 c-grey-800">15% <i class="fa fa-level-up c-green-500"></i></span>
+                          <small class="c-grey-500 fw-600">Sales</small>
+                        </div>
+                        <div class="peer fw-600">
+                          <span class="fsz-def fw-600 mR-10 c-grey-800">8% <i class="fa fa-level-down c-red-500"></i></span>
+                          <small class="c-grey-500 fw-600">Profit</small>
+                        </div>
+                      </div>
+                    </div>
+-->
+                  </div>
+                </div>
+              </div>
+             
+
+              <div class="masonry-item col-md-6">
+                <!-- #Sales Report ==================== -->
+                <div class="bd bgc-white">
+                  <div class="layers">
+                    <div class="layer w-100 p-20">
+                      <h6 class="lh-1">Drone Stats</h6>
+                    </div>
+                    <div class="layer w-100">
+<!--
+                      <div class="bgc-orange-500 c-white p-20">
+                        <div class="peers ai-c jc-sb gap-40">
+                          <div class="peer peer-greed">
+                            <h3>Current Status</h3>
+                          </div>
+                          <div class="peer">
+                            <h3 class="text-right">Ready</h3>
+                          </div>
+                        </div>
+                      </div>
+-->
+                      <div class="table-responsive p-20">
+                        <table class="table">
+                          <thead>
+                            <tr>
+                              <th class=" bdwT-0">Drone ID</th>
+                              <th class=" bdwT-0">Status</th>
+                              <th class=" bdwT-0">Last Location</th>
+                              <th class=" bdwT-0">Refresh Time</th>  
+                            </tr>
+                          </thead>
+                          <tbody id="drone_stats">
+                            <!-- <tr>
+                              <td class="fw-600">#11001</td>
+                              <td><span class="badge bgc-green-50 c-green-700 p-10 lh-0 tt-c badge-pill">Available</span></td>
+                              <td>(12.4234,14.3242)</td>
+                              <td>0m32s</td>
+                            </tr>
+                            <tr>
+                              <td class="fw-600">#11002</td>
+                              <td><span class="badge bgc-red-50 c-red-700 p-10 lh-0 tt-c badge-pill">Unavailable</span></td>
+                              <td>(13.6434,16.6332)</td>
+                                <td>4m20s</td>
+                            </tr>
+                            <tr>
+                              <td class="fw-600">#11003</td>
+                              <td><span class="badge bgc-green-50 c-green-700 p-10 lh-0 tt-c badge-pill">Available</span></td>
+                              <td>(19.3629,18.9273)</td>
+                                <td>0m30s</td>
+                            </tr>
+                            <tr>
+                              <td class="fw-600">#11004</td>
+                              <td><span class="badge bgc-red-50 c-red-700 p-10 lh-0 tt-c badge-pill">Unavailable</span></td>
+                              <td>(12.9087,20.8423)</td>
+                                <td>3m39s</td>
+                            </tr>
+                            <tr>
+                              <td class="fw-600">#11005</td>
+                              <td><span class="badge bgc-green-50 c-green-700 p-10 lh-0 tt-c badge-pill">Available</span></td>
+                              <td>(23.8735,16.2573)</td>
+                                <td>0m28s</td>
+                            </tr>
+                            <tr>
+                              <td class="fw-600">#11006</td>
+                              <td><span class="badge bgc-green-50 c-green-700 p-10 lh-0 tt-c badge-pill">Available</span></td>
+                              <td>(17.3521,17.4563)</td>
+                                <td>0m20s</td>
+                            </tr> -->
+                           <!--  <tr>
+                              <td class="fw-600">#11007</td>
+                              <td><span class="badge bgc-green-50 c-green-700 p-10 lh-0 tt-c badge-pill">Available</span></td>
+                              <td>(19.6473,17.8731)</td>
+                                <td>0m36s</td>
+                            </tr> -->
+                          </tbody>
+                        </table>
+                       </div>
+                    </div>
+                  </div>
+                  <div class="ta-c bdT w-100 p-20">
+                    <a href="/signup.html">Check Map</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="masonry-item col-md-8">
+              <div class="container-fluid">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="bgc-white bd bdrs-3 p-20 mB-20">
+                    <h4 class="c-grey-900 mB-20">Bootstrap Data Table</h4>
+                    <table id="dataTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                        <thead>
+                          <tr>
+                            <th>ID</th>
+                            <th>Label</th>
+                            <th>Position</th>
+                            <th>Status</th>
+                            <th>Associated Drone</th>
+                            <th>Est. Time</th>
+                          </tr>
+                        </thead>
+                        <tbody id="grid_table_body"></tbody>
+                      </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+              
+
+
+            </div>
+          </div>
+        </main>
+
+        <!-- ### $App Screen Footer ### -->
+        <footer class="bdT ta-c p-30 lh-0 fsz-sm c-grey-600">
+          <span>Developed for ISRO under Smart India Hackathon 2018 - Team μ-FALCON</span>
+        </footer>
+      </div>
+    </div>
+    <script type="text/javascript" src="reader.js"></script>
+  </body>
+</html>
